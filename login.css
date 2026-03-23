@@ -1,0 +1,154 @@
+/* 全局重置：统一盒模型，禁止全局拉伸 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* 核心：禁止所有元素弹性收缩，从根源避免拉伸 */
+  flex-shrink: 0;
+}
+html{
+    height: 100%;
+}
+
+body{
+            background :linear-gradient(to right, pink,skyblue);
+            min-height: 100vh;
+            margin: 0;
+            /* 给bodykai开启flex布局，让body内的内容即.box水平，垂直居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+}
+.box{
+    width: 1050px;
+    height: 500px;
+    background-color: transparent;/*透明*/
+    /* 让.box开启flex布局，让.box的内容水平，垂直居中*/
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 12px; /* 圆角更美观，匹配你的截图 */
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+    position: relative; /* 必须！让图片以box为参考定位 */
+    overflow: hidden; /* 防止图片超出容器 */
+}
+
+.login-box, .regiser-box {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 25px;
+   z-index: 1;
+
+}
+
+.content1-box{
+    
+    /* position: relative;
+    top: 10px;
+    left: 225px; */
+    text-align: center;
+    color: rgb(255, 255, 255);
+    /* border: pink;
+    border:2px; */
+
+}
+.content2-box{
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+.form-group {
+    display: flex;
+    align-items: center; 
+    gap: 8px;
+    margin: 40px;
+    justify-content: center;
+}
+
+.form-group input{
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #f8f9ff; /* 浅蓝背景，匹配截图 */
+    width: 180px; /* 固定输入框宽度，更整齐 */
+}
+
+
+.btn-text-group {
+  display: flex;       /* 同行 */
+  align-items: center; /* 垂直居中 */
+  margin-top: 20px;    /* 与输入框的间距（正下方） */
+  gap: 12px;           /* 按钮和文字的间距 */
+}
+
+/* 按钮样式 */
+.btn-text-group button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  background: #6ed2d9;
+  cursor: pointer;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 切换文字样式 */
+.switch {
+  font-size: 14px;
+  color: #666;
+  cursor: pointer; /* 鼠标悬浮变手型 */
+  margin: 0;
+}
+#cover-img {
+    width: 100px;    /* 图片尺寸改为100×100px */
+    height: 100px;
+    border-radius: 50%; /* 圆形效果 */
+    object-fit: cover; /* 图片裁剪适配圆形，避免拉伸 */
+}
+/* .cover-container {
+    position: absolute;
+    width: 500px;     
+    height: 500px;
+    top: 0;
+    right: 0;         
+    z-index: 10;
+    background-color: skyblue;   
+    transition: all 0.5s ease;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.cover-container.cover-login {
+    right: auto;
+    left: 0; 
+    background-color: pink;
+} */
+ /* 核心修改：滑动动画的基础样式 */
+.cover-container {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 0;
+    /* 初始位置：右侧（注册模块），固定在box的右侧 */
+    left: calc(100% - 500px); 
+    z-index: 10;
+    background-color: skyblue; /* 右侧-蓝色 */
+    /* 关键：用transform实现滑动，transition控制动画 */
+    transform: translateX(0);
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); /* 缓动曲线，滑动更自然 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 核心修改：切换到左侧（登录模块）的滑动效果 */
+.cover-container.cover-login {
+    left: calc(100% - 500px); /* 保持left不变，仅改transform */
+    transform: translateX(calc(-100% - 50px)); /* 向左滑动：自身宽度+模块间距（50px） */
+    background-color: pink; /* 左侧-粉色 */
+}
