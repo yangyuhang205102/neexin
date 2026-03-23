@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录注册切换</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    <div class="box"> 
+        <div id="cover-container" class="cover-container">
+            <img id="cover-img" src="./f01aaa84beaa33d2dfc86d726c9dd2481537c3147edad219b.jpg" alt="覆盖图">
+        </div>
+
+        <div class="login-box">
+            <div class="content1-box">
+                <h1 >登录</h1>
+            </div>
+            <div class="input-login">
+                <div class="form-group">
+                    <span>账号：</span>
+                    <input type="text"> 
+                </div>
+                <div class="form-group">
+                    <span>密码：</span>
+                    <input type="password" > 
+                </div>
+            </div>
+            <div class="btn-text-group">
+                <button style="color: aliceblue;">登录</button> 
+                <!-- 修复：移除多余的双引号 -->
+                <div class="switch" onclick="switchToRegister()">
+                    <p>未有账号？去注册！</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="regiser-box">
+            <div class="content2-box">
+                <h1>注册</h1>
+            </div>
+            <div class="input-regiser">
+                <div class="form-group">
+                    <span>账号：</span>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <span>密码：</span>
+                    <input type="password">
+                </div>
+            </div>
+            <div class="btn-text-group">
+                <button style="color: aliceblue;">注册</button>
+                <div class="switch" onclick="switchToLogin()">
+                    <p>已有账号？去登录！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 定义两张图片的路径（确认图片文件存在！）
+        const img1 = "./f01aaa84beaa33d2dfc86d726c9dd2481537c3147edad219b.jpg"; // 初始覆盖注册的图片
+        const img2 = "./TempDragFile_20260120_174801(1).jpg"; // 切换后覆盖登录的图片
+        const coverImg = document.getElementById("cover-img");
+        // 修复1：变量名大小写统一（JS区分大小写）
+        const coverContainer = document.getElementById("cover-container");
+
+        // 切换到注册（容器移到登录模块，图片换第二张）
+        function switchToRegister() {
+            console.log("点击了去注册"); // 调试：控制台打印，确认函数触发
+            coverImg.src = img2; 
+            // 修复2：操作容器的class，而非图片的class
+            coverContainer.classList.add("cover-login"); 
+        }
+
+        // 切换到登录（容器移回注册模块，图片换第一张）
+        function switchToLogin() {
+            console.log("点击了去登录"); // 调试：控制台打印，确认函数触发
+            coverImg.src = img1; 
+            // 修复2：操作容器的class，而非图片的class
+            coverContainer.classList.remove("cover-login"); 
+        }                                 
+    </script>
+</body>
+</html>
